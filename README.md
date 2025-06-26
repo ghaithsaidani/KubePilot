@@ -1,93 +1,92 @@
-# kubepilot-docs
+<div style="display: flex;align-items: center; gap: 20px">
+  <h1 style="padding: 0; margin: 0">Kubepilot</h1>
+  <img src="./images/logo.png" alt="logo" height="50"/>
+</div>
 
+Kubepilot is a centralized DevOps platform designed to simplify the management of Kubernetes resources, automate CI/CD pipelines with Tekton, and provide real-time observability for clusters—all from a modern web interface.
 
+---
 
-## Getting started
+## 📌 Features
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+- **🌐 Unified Kubernetes Resource Management**  
+  View, create, delete, and monitor Kubernetes workloads (pods, services, deployments) in real-time via a friendly ReactJS dashboard.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- **🔁 CI/CD Pipelines with Tekton (Drag & Drop)**  
+  Create reusable Tekton pipelines through an intuitive visual editor using React Flow. Automate build, test, and deploy workflows without writing YAML manually.
 
-## Add your files
+- **📊 Real-Time Observability**  
+  Integrated with Prometheus and Grafana Loki for collecting metrics and logs. Provides a unified dashboard for monitoring pod health, CPU/memory usage, and container logs.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+- **🔐 Secure Authentication & Authorization**  
+  Supports SSO using Keycloak (OpenID Connect). RBAC (Role-Based Access Control) is enforced at the interface and Kubernetes API level.
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/ghaithsaidani/kubepilot-docs.git
-git branch -M main
-git push -uf origin main
-```
+- **🔑 Secret Management**  
+  Integrates HashiCorp Vault to securely manage and inject sensitive data (API keys, credentials) into applications or pipelines.
 
-## Integrate with your tools
+- **📡 Event Streaming & State Coordination**  
+  Uses Kafka and Zookeeper for coordination and service discovery across microservices.
 
-- [ ] [Set up project integrations](https://gitlab.com/ghaithsaidani/kubepilot-docs/-/settings/integrations)
+---
 
-## Collaborate with your team
+## 🏗️ Architecture
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+Kubepilot follows a microservices-based architecture, where each Spring Boot service has a dedicated responsibility. The services communicate via REST and Kafka, and the entire system is orchestrated within a Kubernetes cluster.
 
-## Test and Deploy
+![Architecture Overview](./images/detailed%20architecture%20diagram%20-%20english.png)
 
-Use the built-in continuous integration in GitLab.
+### 🔧 Microservices Breakdown
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+| Layer | Microservice | Description |
+|-------|--------------|-------------|
+| **Service Registry** | `discovery-service` | Provides service discovery using **Spring Cloud Eureka**, allowing dynamic resolution between microservices. |
+| **Configuration** | `config-service` | Centralized config management using **Spring Cloud Config**, backed by a Git repository. Provides dynamic configuration to other services. |
+| **API Gateway** | `api-gateway` | Acts as the unified entry point for frontend requests. Handles routing, CORS, authentication forwarding, and load balancing. |
+| **Authentication** | `auth-service` | Integrates with **Keycloak** for OAuth2 authentication. Handles user login, access tokens, and user roles. |
+| **Cluster Management** | `cluster-configuration-service` | Manages credentials and metadata for registered Kubernetes clusters. Enables multi-cluster support by storing server URLs, tokens, etc. |
+| **Infrastructure Management** | `infrastructure-service` | Interacts directly with the Kubernetes API (via **Fabric8**) to manage workloads: pods, services, deployments, namespaces, and more. |
+| **DevOps Orchestration** | `devops-service` | Converts drag-and-drop pipelines into **Tekton** CRDs, submits them to the cluster, and tracks their execution. Streams task logs and status updates to the frontend. |
 
-***
+---
 
-# Editing this README
+### 🔌 External Integrations
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+Kubepilot connects with a variety of tools to offer a complete DevOps and Kubernetes experience:
 
-## Suggestions for a good README
+- **Tekton** – Kubernetes-native CI/CD system for pipeline execution
+- **Prometheus** – Collects metrics from Kubernetes components and workloads
+- **Grafana Loki** – Aggregates container logs for search and monitoring
+- **Vault** – Manages secrets securely, with dynamic secrets and policies
+- **Keycloak** – Handles user authentication and SSO with OpenID Connect
+- **Kafka** – Used for sending pipeline task events and streaming logs
+- **Zookeeper** – Supports Kafka’s distributed coordination
+- **PostgreSQL** – Primary persistent database used by backend services
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+---
 
-## Name
-Choose a self-explaining name for your project.
+Frontend is built with **ReactJS** and interacts with the backend services through the `api-gateway`. Backend services use **Fabric8** to communicate with Kubernetes clusters securely and dynamically.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+---
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+## 🖥️ Some Screenshots Examples
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+- **Authentication**: Login page for user authentication to access the Kubepilot platform.
+![Dashboard](./images/ui/(light)login-auth.png)
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+- **Dashboard**: Main dashboard showing cluster overview with resource usage and welcome message(NB: not completed yet).
+![Dashboard](./images/ui/dashboard.png)
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+- **Pipeline flow-builder**: Interface for building Tekton pipelines using a drag-and-drop flow editor.
+![Pipeline Flow Builder](./images/ui/(light)pipeline.png)
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+- **Resources Listing**: List of resources in the cluster, including pods and deployments etc...
+![List Pods](./images/ui/list-resources-mockup.png)
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+- **Add resources**: Form and YAML editor for adding new resources to the cluster.
+![List Pods](./images/ui/add-resources-mockup.png)
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+---
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+## 📬 Contact
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+For further inquiries or assistance, feel free to reach out to me via [email](mailto:ghaith.saidani@sesame.com.tn) or [LinkedIn](https://www.linkedin.com/in/ghaithsaidani/).
