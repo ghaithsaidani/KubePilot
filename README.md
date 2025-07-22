@@ -1,7 +1,4 @@
-<div style="display: flex;align-items: center; gap: 20px">
-  <h1 style="padding: 0; margin: 0">Kubepilot</h1>
-  <img src="./assets/images/logo-dark.svg" alt="logo" height="40"/>
-</div>
+# Kubepilot <img src="./assets/images/logo-dark.svg" alt="logo" height="50" />
 
 Kubepilot is a centralized DevOps platform designed to simplify the management of Kubernetes resources, automate CI/CD pipelines with Tekton, and provide real-time observability for clusters—all from a modern web interface.
 
@@ -67,7 +64,12 @@ Frontend is built with **ReactJS** and interacts with the backend services throu
 ---
 
 ## 🎥 Demo Video
-https://github.com/user-attachments/assets/d6308811-c344-491c-9337-a0a2639ba6f2
+
+
+
+https://github.com/user-attachments/assets/b1fe3c78-d02a-41e0-a290-9dd37d91fe36
+
+
 ---
 
 ## ⚠️ Confidentiality Notice
