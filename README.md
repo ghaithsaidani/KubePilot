@@ -1,6 +1,6 @@
 <div style="display: flex;align-items: center; gap: 20px">
   <h1 style="padding: 0; margin: 0">Kubepilot</h1>
-  <img src="./images/logo.png" alt="logo" height="50"/>
+  <img src="./assets/images/logo-dark.svg" alt="logo" height="40"/>
 </div>
 
 Kubepilot is a centralized DevOps platform designed to simplify the management of Kubernetes resources, automate CI/CD pipelines with Tekton, and provide real-time observability for clusters—all from a modern web interface.
@@ -33,7 +33,7 @@ Kubepilot is a centralized DevOps platform designed to simplify the management o
 
 Kubepilot follows a microservices-based architecture, where each Spring Boot service has a dedicated responsibility. The services communicate via REST and Kafka, and the entire system is orchestrated within a Kubernetes cluster.
 
-![Architecture Overview](./images/detailed%20architecture%20diagram%20-%20english.png)
+![Architecture Overview](./assets/images/detailed%20architecture%20diagram%20-%20english.png)
 
 ### 🔧 Microservices Breakdown
 
@@ -60,33 +60,22 @@ Kubepilot connects with a variety of tools to offer a complete DevOps and Kubern
 - **Keycloak** – Handles user authentication and SSO with OpenID Connect
 - **Kafka** – Used for sending pipeline task events and streaming logs
 - **Zookeeper** – Supports Kafka’s distributed coordination
-- **PostgreSQL** – Primary persistent database used by backend services
-
----
+- **PostgreSQL** – Primary persistent database used by keycloak specifically to store users data
 
 Frontend is built with **ReactJS** and interacts with the backend services through the `api-gateway`. Backend services use **Fabric8** to communicate with Kubernetes clusters securely and dynamically.
 
 ---
 
-## 🖥️ Some Screenshots Examples
+## 🎥 Demo Video
+https://github.com/user-attachments/assets/d6308811-c344-491c-9337-a0a2639ba6f2
+---
 
-- **Authentication**: Login page for user authentication to access the Kubepilot platform.
-![Dashboard](./images/ui/(light)login-auth.png)
+## ⚠️ Confidentiality Notice
 
-- **Dashboard**: Main dashboard showing cluster overview with resource usage and welcome message(NB: not completed yet).
-![Dashboard](./images/ui/dashboard.png)
-
-- **Pipeline flow-builder**: Interface for building Tekton pipelines using a drag-and-drop flow editor.
-![Pipeline Flow Builder](./images/ui/(light)pipeline.png)
-
-- **Resources Listing**: List of resources in the cluster, including pods and deployments etc...
-![List Pods](./images/ui/list-resources-mockup.png)
-
-- **Add resources**: Form and YAML editor for adding new resources to the cluster.
-![List Pods](./images/ui/add-resources-mockup.png)
+The source code of **Kubepilot** is strictly **confidential** and **not open source**.
 
 ---
 
 ## 📬 Contact
 
-For further inquiries or assistance, feel free to reach out to me via [email](mailto:ghaith.saidani@sesame.com.tn) or [LinkedIn](https://www.linkedin.com/in/ghaithsaidani/).
+For further inquiries or assistance, feel free to reach out to me via [email](mailto:ghaith.saidani.contact@gmail.com) or [LinkedIn](https://www.linkedin.com/in/ghaithsaidani/).
