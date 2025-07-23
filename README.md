@@ -65,9 +65,7 @@ Frontend is built with **ReactJS** and interacts with the backend services throu
 
 ## 🎥 Demo Video
 
-
-
-https://github.com/user-attachments/assets/b1fe3c78-d02a-41e0-a290-9dd37d91fe36
+https://github.com/user-attachments/assets/a764884d-1520-431f-b6d7-e3a0c3b9d0c6
 
 
 ---
@@ -81,3 +79,5 @@ The source code of **Kubepilot** is strictly **confidential** and **not open sou
 ## 📬 Contact
 
 For further inquiries or assistance, feel free to reach out to me via [email](mailto:ghaith.saidani.contact@gmail.com) or [LinkedIn](https://www.linkedin.com/in/ghaithsaidani/).
+
+
