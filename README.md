@@ -1,4 +1,4 @@
-# Kubepilot <img src="./assets/images/logo-dark.svg" alt="logo" height="50" />
+# Kubepilot <img src="./assets/images/logo-light.svg" alt="logo" height="50" />
 
 Kubepilot is a centralized DevOps platform designed to simplify the management of Kubernetes resources, automate CI/CD pipelines with Tekton, and provide real-time observability for clusters—all from a modern web interface.
 
