@@ -19,7 +19,7 @@ Kubepilot is a centralized DevOps platform designed to simplify the management o
   Supports SSO using Keycloak (OpenID Connect). RBAC (Role-Based Access Control) is enforced at the interface and Kubernetes API level.
 
 - **🔑 Secret Management**  
-  Integrates HashiCorp Vault to securely manage and inject sensitive data (API keys, credentials) into applications or pipelines.
+  Integrates HashiCorp Vault to securely manage and inject sensitive data (API keys, credentials).
 
 - **📡 Event Streaming & State Coordination**  
   Uses Kafka and Zookeeper for coordination and service discovery across microservices.
