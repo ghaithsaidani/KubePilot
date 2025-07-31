@@ -7,7 +7,7 @@ Kubepilot is a centralized DevOps platform designed to simplify the management o
 ## 📌 Features
 
 - **🌐 Unified Kubernetes Resource Management**  
-  View, create, delete, and monitor Kubernetes workloads (pods, services, deployments) in real-time via a friendly ReactJS dashboard.
+  View, create, delete, and monitor Kubernetes workloads (pods, services, deployments,namespaces, rbac, etc...) in real-time via a friendly ReactJS dashboard.
 
 - **🔁 CI/CD Pipelines with Tekton (Drag & Drop)**  
   Create reusable Tekton pipelines through an intuitive visual editor using React Flow. Automate build, test, and deploy workflows without writing YAML manually.
