@@ -70,9 +70,9 @@ https://github.com/user-attachments/assets/7c2b56da-4cf5-4b16-8078-c417e816ed5a
 
 ---
 
-## ⚠️ Confidentiality Notice
+## 💻 Source Code
 
-The source code of **Kubepilot** is strictly **confidential** and **not open source**.
+You can have a look at **Kubepilot** source code using this [Link](https://gitlab.com/kube-pilot).
 
 ---
 
